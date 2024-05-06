@@ -1,0 +1,7 @@
+openapi: 3.0.0
+info:
+  title: Caseritos API
+  version: 1.0.0
+  description: An API to interact with Caseritos App
+servers:
+  - url: https://caseritos-api.herokuapp.com/api/

@@ -1,0 +1,47 @@
+components:
+  schemas:
+    Product:
+      type: object
+      required:
+        - id
+        - name
+        - owner
+        - description
+        - price
+        - stock
+        - createdAt
+      properties:
+        id:
+          type: number
+          format: int64
+          example: 1
+        name:
+          type: string
+          example: Berry Cheescake
+        owner:
+          type: object
+          required:
+            - id
+            - storeName
+          properties:
+            id:
+              type: integer
+              format: int64
+              example: 4
+            storeName:
+              type: string
+              example: The Bakery
+        description:
+          type: string
+          example: Berry Cheescake, this cheesecake recipe is the Best, it will become your favourite no bake dessert. Fast and easy. Creamy and so delicious with an easy Raspberry and Blueberry topping.
+        price:
+          type: integer
+          format: int64
+          example: 500
+        stock:
+          type: integer
+          format: int64
+          example: 5
+        createAt:
+          format: date-time
+          example: '2017-07-21T17:32:28Z'

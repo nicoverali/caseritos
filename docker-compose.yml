@@ -1,0 +1,63 @@
+version: "3.8"
+
+services:
+  admin-panel:
+    image: caseritos:php
+    container_name: caseritos-admin-panel
+    command: "php artisan serve --env=local --host 0.0.0.0"
+    ports:
+      - "8000:8000"
+    networks:
+      - caseritos
+
+  api:
+    build:
+      context: ./node-api
+      dockerfile: Dockerfile
+    container_name: caseritos-api
+    environment:
+      - NODE_ENV=local
+    # command: bash -c "npm install && npm run build && npm run start"
+    # command: npm run start
+    ports:
+      - "3001:3001"
+    # volumes:
+    #   - ./node-api:/app
+    networks:
+      - caseritos
+
+  frontend:
+    build:
+      context: ./nextjs-frontend
+      dockerfile: Dockerfile
+    container_name: caseritos-frontend
+    command: "npx next start"
+    ports:
+      - "3000:3000"
+    networks:
+      - caseritos
+
+  redis:
+    image: redis:alpine
+    container_name: redis
+    ports:
+      - 6379:6379
+
+  postgres:
+    container_name: "caseritos-postgres"
+    image: postgres
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_DB=laravel
+      - POSTGRES_PASSWORD=secret
+    volumes:
+      - postgres_db:/var/lib/postgresql/data
+    networks:
+      - caseritos
+
+volumes:
+  postgres_db:
+networks:
+  caseritos:
+    name: caseritos

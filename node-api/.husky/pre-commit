@@ -1,0 +1,4 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+npm run format:staged && npm run lint:staged -- --max-warnings=0 && git add $(git diff --name-only --cached)

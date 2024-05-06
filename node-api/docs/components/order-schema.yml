@@ -1,0 +1,67 @@
+components:
+  schemas:
+    Order:
+      type: object
+      required:
+        - id
+        - product
+        - quantity
+        - price
+        - createdAt
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 1
+        product:
+          type: object
+          required:
+            - id
+            - name
+            - owner
+          properties:
+            id:
+              type: integer
+              format: int64
+              example: 12
+            name:
+              type: string
+              example: Berry Cheescake
+            owner:
+              type: object
+              required:
+                - id
+                - storeName
+              properties:
+                id:
+                  type: integer
+                  format: int64
+                  example: 2
+                storeName:
+                  type: string
+                  example: The Bakery
+        quantity:
+          type: integer
+          format: int64
+          example: 2
+        price:
+          type: integer
+          format: int64
+          example: 500
+        createAt:
+          type: date
+          example: 18/05/2021
+    OrderRequest:
+      type: object
+      required:
+        - productId
+        - quantity
+      properties:
+        productId:
+          type: integer
+          format: int64
+          example: 64
+        quantity:
+          type: integer
+          format: int64
+          example: 2

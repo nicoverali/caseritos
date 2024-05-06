@@ -1,0 +1,12 @@
+components:
+  schemas:
+    Session:
+      type: string
+      format: jwt
+      example: xxxxx.yyyyy.zzzzz
+
+  securitySchemes:
+    BearerAuth:            # arbitrary name for the security scheme
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

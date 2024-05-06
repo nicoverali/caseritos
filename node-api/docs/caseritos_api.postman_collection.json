@@ -1,0 +1,810 @@
+{
+  "info": {
+    "_postman_id": "1d34bbd8-6679-482e-bbbc-e09b0f67cc50",
+    "name": "Caseritos API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Products",
+      "item": [
+        {
+          "name": "Get collection of products",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/api/products",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "products"]
+            },
+            "description": "Returns the collection of all products in descending order by creation date. You can also set Limit/Offset parameters to request a particular page."
+          },
+          "response": [
+            {
+              "name": "Get a page of products",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{BASE_URL}}/api/products?limit=2&offset=5",
+                  "host": ["{{BASE_URL}}"],
+                  "path": ["api", "products"],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "2"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "5"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "374"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"176-5U8gwkcZcR2o0EZHMcueOB4yKSA\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 22 Jun 2021 00:09:23 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n    {\n        \"id\": \"103\",\n        \"name\": \"Chicken Sandwich\",\n        \"owner\": {\n            \"id\": \"17\",\n            \"storeName\": \"Baumbach-Lynch\"\n        },\n        \"description\": \"chicken burger on tray\",\n        \"price\": 99999,\n        \"stock\": 81,\n        \"createdAt\": \"2021-01-03T00:39:49.000Z\"\n    },\n    {\n        \"id\": \"102\",\n        \"name\": \"Handmade Ravioli\",\n        \"owner\": {\n            \"id\": \"17\",\n            \"storeName\": \"Baumbach-Lynch\"\n        },\n        \"description\": \"pile of pasta\",\n        \"price\": 99999,\n        \"stock\": 52,\n        \"createdAt\": \"2021-04-11T08:31:35.000Z\"\n    }\n]"
+            }
+          ]
+        },
+        {
+          "name": "Get a particular product",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/api/products/24",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "products", "24"]
+            },
+            "description": "You can retrieve a particular product by its ID"
+          },
+          "response": []
+        },
+        {
+          "name": "Get picture of a product",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/api/products/24/picture",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "products", "24", "picture"]
+            },
+            "description": "Given the ID of a product, you can retrieve its original picture."
+          },
+          "response": []
+        },
+        {
+          "name": "Get thumbnail of a product",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/api/products/24/picture",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "products", "24", "picture"]
+            },
+            "description": "Given the ID of a product, you can retrieve a thumbnail version of its original picture."
+          },
+          "response": []
+        }
+      ],
+      "description": "All products endpoints are public, so no JWT Token is required"
+    },
+    {
+      "name": "Session",
+      "item": [
+        {
+          "name": "Create a session (login)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": ["pm.collectionVariables.set('TOKEN', responseBody)"],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"email\": \"cliente@caseritos.com\",\r\n  \"password\": \"secret\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/api/session",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "session"]
+            },
+            "description": "Creates a JWT Token given that the provided credentials are valid. Credentials must be provided in the body of the request."
+          },
+          "response": [
+            {
+              "name": "Receives a valid JWT Token",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"email\": \"super@caseritos.com\",\r\n  \"password\": \"secret\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{BASE_URL}}/api/session",
+                  "host": ["{{BASE_URL}}"],
+                  "path": ["api", "session"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "html",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/html; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "119"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"77-MCcH6hHAl9xBYibrbzHzQ3sVcy0\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 21 Jun 2021 23:41:49 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU0IiwiaWF0IjoxNjI0MzE4OTA5fQ.4KGuVfsQn8iP_EJJFcCsplyGAor19AoYzRnsd0Ps-mg"
+            }
+          ]
+        },
+        {
+          "name": "Delete a session (logout)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{TOKEN}}",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "{{Example_Token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/api/session",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "session"]
+            },
+            "description": "Invalidates the current JWT Token in the Authorization header"
+          },
+          "response": []
+        }
+      ],
+      "description": "### What are sessions ?\nA Session represents an authenticated client. Authentication is based on JWT Tokens. You need a valid JWT Token to access private routes.\n\n### How are sessions created ?\nTo create a session you must provide valid credentials. The API will respond with a new valid JWT Token that you can user in subsequent request to private routes.\n\n### How are sessions deleted ?\nSessions cannot actually be deleted, but the server will remember that the given JWT Token has been invalidated."
+    },
+    {
+      "name": "Client",
+      "item": [
+        {
+          "name": "Register a client",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"Timmy O. Mowbray\",\r\n  \"email\": \"dotimmy14@yopmail.com\",\r\n  \"password\": \"s0m3V3RyS3Cur3P4SS\",\r\n  \"phone\": \"+1(131)-8991919\",\r\n  \"address\": \"529 Arthur Park\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/api/client",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "client"]
+            },
+            "description": "Creates a new client in the app. \n\n**NOTE: This won't automatically create a new Session. You should create a new Session manually after a client has been successfully created**"
+          },
+          "response": [
+            {
+              "name": "Email already exists",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"name\": \"Timmy O. Mowbray\",\r\n  \"email\": \"cliente@caseritos.com\",\r\n  \"password\": \"s0m3V3RyS3Cur3P4SS\",\r\n  \"phone\": \"+1(131)-8991919\",\r\n  \"address\": \"529 Arthur Park\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{BASE_URL}}/api/client",
+                  "host": ["{{BASE_URL}}"],
+                  "path": ["api", "client"]
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "_postman_previewlanguage": "plain",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "8"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"8-OfewgPiFJ3o3XA5wgKRYk2ZHNlU\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 21 Jun 2021 23:49:51 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "Conflict"
+            }
+          ]
+        },
+        {
+          "name": "Update client",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{TOKEN}}",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "{{Example_Token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"Some other name\",\r\n  \"email\": \"another@email.com\",\r\n  \"password\": \"anotherPassword\",\r\n  \"phone\": \"+1(131)-8991919\",\r\n  \"address\": \"529 Arthur Park\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/api/client",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "client"]
+            },
+            "description": "Updates the current client information. The given information must be complete.\nPartial update is not available because **PUT must be idempotent**."
+          },
+          "response": [
+            {
+              "name": "Email already exists",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"name\": \"Timmy O. Mowbray\",\r\n  \"email\": \"cliente@caseritos.com\",\r\n  \"password\": \"s0m3V3RyS3Cur3P4SS\",\r\n  \"phone\": \"+1(131)-8991919\",\r\n  \"address\": \"529 Arthur Park\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{BASE_URL}}/api/client",
+                  "host": ["{{BASE_URL}}"],
+                  "path": ["api", "client"]
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "_postman_previewlanguage": "plain",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "8"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"8-OfewgPiFJ3o3XA5wgKRYk2ZHNlU\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 21 Jun 2021 23:49:51 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "Conflict"
+            }
+          ]
+        },
+        {
+          "name": "Get current client info",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{TOKEN}}",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "{{Example_Token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/api/client",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "client"]
+            },
+            "description": "Returns the information of the current authenticated client. Current client is determined by the given JWT Token"
+          },
+          "response": []
+        }
+      ],
+      "description": "Client routes will always reference the current client except for the register endpoint. The current client is determined by the current JWT Token."
+    },
+    {
+      "name": "Orders",
+      "item": [
+        {
+          "name": "Get orders of current client",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{TOKEN}}",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "{{Example_Token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/api/orders",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "orders"],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "",
+                  "description": "Set a limit on the amount of products",
+                  "disabled": true
+                },
+                {
+                  "key": "offset",
+                  "value": "",
+                  "description": "Set the offset of the page",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "Returns all the orders of the current authenticated client in descending order by creation date. You can also provide Limit/Offset parameters to request a particular page of orders."
+          },
+          "response": [
+            {
+              "name": "Get all orders",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{BASE_URL}}/api/orders",
+                  "host": ["{{BASE_URL}}"],
+                  "path": ["api", "orders"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "2032"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"7f0-OGbAFtVGuYTBN40UMQGgDv3jG0U\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 22 Jun 2021 02:48:28 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n    {\n        \"id\": \"547\",\n        \"product\": {\n            \"id\": \"64\",\n            \"name\": \"Cupcakes\",\n            \"owner\": {\n                \"id\": \"11\",\n                \"storeName\": \"Wilderman, Koelpin and Heaney\"\n            }\n        },\n        \"quantity\": 2,\n        \"price\": 99999,\n        \"createdAt\": \"2021-06-21T23:53:37.000Z\"\n    },\n    {\n        \"id\": \"536\",\n        \"product\": {\n            \"id\": \"64\",\n            \"name\": \"Cupcakes\",\n            \"owner\": {\n                \"id\": \"11\",\n                \"storeName\": \"Wilderman, Koelpin and Heaney\"\n            }\n        },\n        \"quantity\": 2,\n        \"price\": 414,\n        \"createdAt\": \"2021-06-11T04:55:06.000Z\"\n    },\n    {\n        \"id\": \"538\",\n        \"product\": {\n            \"id\": \"103\",\n            \"name\": \"Chicken Sandwich\",\n            \"owner\": {\n                \"id\": \"17\",\n                \"storeName\": \"Baumbach-Lynch\"\n            }\n        },\n        \"quantity\": 1,\n        \"price\": 543,\n        \"createdAt\": \"2021-05-25T17:00:01.000Z\"\n    },\n    {\n        \"id\": \"539\",\n        \"product\": {\n            \"id\": \"104\",\n            \"name\": \"Avocado and Egg Toast\",\n            \"owner\": {\n                \"id\": \"17\",\n                \"storeName\": \"Baumbach-Lynch\"\n            }\n        },\n        \"quantity\": 1,\n        \"price\": 125,\n        \"createdAt\": \"2021-05-05T13:58:09.000Z\"\n    },\n    {\n        \"id\": \"535\",\n        \"product\": {\n            \"id\": \"54\",\n            \"name\": \"Melty caramel ice cream cone\",\n            \"owner\": {\n                \"id\": \"9\",\n                \"storeName\": \"Kling, Hoppe and Gerlach\"\n            }\n        },\n        \"quantity\": 3,\n        \"price\": 409,\n        \"createdAt\": \"2021-04-19T09:07:46.000Z\"\n    },\n    {\n        \"id\": \"533\",\n        \"product\": {\n            \"id\": \"44\",\n            \"name\": \"Blueberry Dessert\",\n            \"owner\": {\n                \"id\": \"8\",\n                \"storeName\": \"Ebert Inc\"\n            }\n        },\n        \"quantity\": 2,\n        \"price\": 426,\n        \"createdAt\": \"2021-04-18T20:10:41.000Z\"\n    },\n    {\n        \"id\": \"534\",\n        \"product\": {\n            \"id\": \"46\",\n            \"name\": \"Oreo cookie sandwiches dessert\",\n            \"owner\": {\n                \"id\": \"8\",\n                \"storeName\": \"Ebert Inc\"\n            }\n        },\n        \"quantity\": 1,\n        \"price\": 921,\n        \"createdAt\": \"2021-03-12T22:34:09.000Z\"\n    },\n    {\n        \"id\": \"537\",\n        \"product\": {\n            \"id\": \"68\",\n            \"name\": \"A bowl of fried chicken pops\",\n            \"owner\": {\n                \"id\": \"12\",\n                \"storeName\": \"Kulas and Sons\"\n            }\n        },\n        \"quantity\": 3,\n        \"price\": 746,\n        \"createdAt\": \"2021-02-27T00:35:39.000Z\"\n    },\n    {\n        \"id\": \"532\",\n        \"product\": {\n            \"id\": \"14\",\n            \"name\": \"Delicious cake with pistachio and raspberries\",\n            \"owner\": {\n                \"id\": \"3\",\n                \"storeName\": \"Murazik, Olson and Roberts\"\n            }\n        },\n        \"quantity\": 1,\n        \"price\": 530,\n        \"createdAt\": \"2021-02-18T09:19:58.000Z\"\n    },\n    {\n        \"id\": \"531\",\n        \"product\": {\n            \"id\": \"6\",\n            \"name\": \"Oreo cookie sandwiches dessert\",\n            \"owner\": {\n                \"id\": \"1\",\n                \"storeName\": \"O'Connell, Wolf and Reilly\"\n            }\n        },\n        \"quantity\": 3,\n        \"price\": 685,\n        \"createdAt\": \"2021-02-03T17:07:06.000Z\"\n    },\n    {\n        \"id\": \"540\",\n        \"product\": {\n            \"id\": \"107\",\n            \"name\": \"sushi\\n\\n\",\n            \"owner\": {\n                \"id\": \"17\",\n                \"storeName\": \"Baumbach-Lynch\"\n            }\n        },\n        \"quantity\": 2,\n        \"price\": 956,\n        \"createdAt\": \"2021-01-30T21:08:06.000Z\"\n    }\n]"
+            },
+            {
+              "name": "Get a page of orders",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{BASE_URL}}/api/orders?limit=3&offset=5",
+                  "host": ["{{BASE_URL}}"],
+                  "path": ["api", "orders"],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "3",
+                      "description": "Set a limit on the amount of products"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "5",
+                      "description": "Set the offset of the page"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "538"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"21a-xY/JN750paiwI8G5D8YM+CaM7z0\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 22 Jun 2021 02:49:21 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n    {\n        \"id\": \"533\",\n        \"product\": {\n            \"id\": \"44\",\n            \"name\": \"Blueberry Dessert\",\n            \"owner\": {\n                \"id\": \"8\",\n                \"storeName\": \"Ebert Inc\"\n            }\n        },\n        \"quantity\": 2,\n        \"price\": 426,\n        \"createdAt\": \"2021-04-18T20:10:41.000Z\"\n    },\n    {\n        \"id\": \"534\",\n        \"product\": {\n            \"id\": \"46\",\n            \"name\": \"Oreo cookie sandwiches dessert\",\n            \"owner\": {\n                \"id\": \"8\",\n                \"storeName\": \"Ebert Inc\"\n            }\n        },\n        \"quantity\": 1,\n        \"price\": 921,\n        \"createdAt\": \"2021-03-12T22:34:09.000Z\"\n    },\n    {\n        \"id\": \"537\",\n        \"product\": {\n            \"id\": \"68\",\n            \"name\": \"A bowl of fried chicken pops\",\n            \"owner\": {\n                \"id\": \"12\",\n                \"storeName\": \"Kulas and Sons\"\n            }\n        },\n        \"quantity\": 3,\n        \"price\": 746,\n        \"createdAt\": \"2021-02-27T00:35:39.000Z\"\n    }\n]"
+            }
+          ]
+        },
+        {
+          "name": "Get specific order of client",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{TOKEN}}",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "{{Example_Token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/api/orders/536",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "orders", "536"]
+            },
+            "description": "Returns information about a particular order. The order needed is identify by its ID. The order must belong to the current authenticated user, if not, an error will be returned."
+          },
+          "response": [
+            {
+              "name": "Order belongs to current client",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{BASE_URL}}/api/orders/536",
+                  "host": ["{{BASE_URL}}"],
+                  "path": ["api", "orders", "536"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "180"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"b4-3lPoTsau4eirGoiZPTd/bir5eTU\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 21 Jun 2021 23:47:49 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": \"536\",\n    \"product\": {\n        \"id\": \"64\",\n        \"name\": \"Cupcakes\",\n        \"owner\": {\n            \"id\": \"11\",\n            \"storeName\": \"Wilderman, Koelpin and Heaney\"\n        }\n    },\n    \"quantity\": 2,\n    \"price\": 414,\n    \"createdAt\": \"2021-06-11T04:55:06.000Z\"\n}"
+            },
+            {
+              "name": "Order does not belong to current client",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{BASE_URL}}/api/orders/2",
+                  "host": ["{{BASE_URL}}"],
+                  "path": ["api", "orders", "2"]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "plain",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "9"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"9-PatfYBLj4Um1qTm5zrukoLhNyPU\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 21 Jun 2021 23:48:34 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "Forbidden"
+            }
+          ]
+        },
+        {
+          "name": "Place new order",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{TOKEN}}",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "{{Example_Token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"productId\": 64,\r\n  \"quantity\": 2\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/api/orders",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "orders"]
+            },
+            "description": "Places a new order for the given product and for the current authenticated user. The request quantity of the product is also indicated in the request body.\nAn error may be returned if the product is out of stock."
+          },
+          "response": []
+        }
+      ],
+      "description": "All order endpoints are private. Information about orders will always be related only to the current authenticated client."
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "BASE_URL",
+      "value": "caseritos-api.herokuapp.com"
+    },
+    {
+      "key": "TOKEN",
+      "value": ""
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+components:
+  schemas:
+    Client:
+      type: object
+      required:
+        - id
+        - name
+        - email
+        - password
+        - phone
+        - address
+      properties:
+        id:
+          type: number
+          format: int64
+          example: 1
+        name:
+          type: string
+          example: Timmy O. Mowbray
+        email:
+          type: string
+          format: email
+          example: dotimmy14@yopmail.com
+        password:
+          type: string
+          format: password
+          example: s0m3V3RyS3Cur3DP4SS
+        phone:
+          type: string
+          example: +1(131)-8991919
+        address:
+          type: string
+          example: 529 Arthur Park
+    ClientCredentials:
+      type: object
+      required:
+        - email
+        - password
+      properties:
+        email:
+          type: string
+          format: email
+          example: dotimmy14@yopmail.com
+        password:
+          type: string
+          format: password
+          example: s0m3V3RyS3Cur3DP4SS

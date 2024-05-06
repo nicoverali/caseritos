@@ -1,0 +1,61 @@
+/* ./styles/globals.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply h-screen;
+    min-height: -webkit-fill-available;
+    color: theme("colors.black.DEFAULT");
+  }
+
+  div#__next {
+    height: 100%;
+  }
+}
+
+@layer utilities {
+  .hide-number-spin {
+    appearence: none;
+  }
+
+  .hide-number-spin::-webkit-inner-spin-button {
+    appearance: none;
+    margin: 0;
+  }
+
+  @variants responsive {
+    .top-translate-center {
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .left-translate-center {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .translate-center {
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  .animation-bounce-x {
+    animation: bounce-x 1s infinite;
+  }
+
+  @keyframes bounce-x {
+    0%,
+    100% {
+      transform: translateX(-25%);
+      animationtimingfunction: cubic-bezier(0.8, 0, 1, 1);
+    }
+    50% {
+      transform: translateX(0);
+      animationtimingfunction: cubic-bezier(0, 0, 0.2, 1);
+    }
+  }
+}
