@@ -1,4 +1,4 @@
-![Screenshot](https://raw.githubusercontent.com/nicoverali/caseritos/blob/master/laravel-admin-panel/public/images/logo.png)
+![Screenshot](https://raw.githubusercontent.com/nicoverali/caseritos/main/laravel-admin-panel/public/images/logo.png)
 
 <p align="center">Homemade meals market in React</p>
 
@@ -65,13 +65,13 @@ The only way for now of interacting with the app is following the local setup in
 ### Laravel version
 
 <p align="center">
-    <img width="49%" src="https://raw.githubusercontent.com/nicoverali/caseritos/blob/master/assets/laravel-screenshot-1.png">
-    <img width="49%" src="https://raw.githubusercontent.com/nicoverali/caseritos/blob/master/assets/laravel-screenshot-2.png">
+    <img width="49%" src="https://raw.githubusercontent.com/nicoverali/caseritos/main/assets/laravel-screenshot-1.png">
+    <img width="49%" src="https://raw.githubusercontent.com/nicoverali/caseritos/main/assets/laravel-screenshot-2.png">
 </p>
 
 ### NextJS version
 
 <p align="center">
-    <img width="49%" src="https://raw.githubusercontent.com/nicoverali/caseritos/blob/master/assets/nextjs-screenshot-1.png">
-    <img width="49%" src="https://raw.githubusercontent.com/nicoverali/caseritos/blob/master/assets/nextjs-screenshot-2.png">
+    <img width="49%" src="https://raw.githubusercontent.com/nicoverali/caseritos/main/assets/nextjs-screenshot-1.png">
+    <img width="49%" src="https://raw.githubusercontent.com/nicoverali/caseritos/main/assets/nextjs-screenshot-2.png">
 </p>
