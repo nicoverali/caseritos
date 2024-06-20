@@ -4,17 +4,17 @@
 
 ## General info
 
-This monorepo contains the each of the projects I developed for the **Web Apps Engineering** course at Universidad Nacional del Sur.
+This monorepo contains each of the projects I developed for the **Web Apps Engineering** course at Universidad Nacional del Sur.
 
-Our goal was to first implement an admin panel with PHP Laravel Framework, then build an API with NodeJS, and finally a frontend client page with React. The topic was our choice, but it must met some given conditions:
+Our goal was to first implement an admin panel with PHP Laravel Framework, then build an API with NodeJS, and finally a frontend client page with React. The topic was our choice, but it must meet some given conditions:
 
-- We should store at least 2 entities in out DB (excluding user entities)
+- We should store at least 2 entities in our DB (excluding user entities)
 - At least one of those entities must have an image or files attached
 - There must be at least 2 user roles with different permissions
 - Users must be able to access with username and password, and they must be able to recover their password in case they forget it
 
-I decided to make a homemade meals market were users would have seller and buyer roles.
-Sellers can publish their meals, set its price, stock, description, etc.
+I decided to make a homemade meals market where users would have seller and buyer roles.
+Sellers can publish their meals, set their price, stock, description, etc.
 Buyers can search for published meals and make a purchase.
 
 Please visit each project folder to see a more detailed description for each of these projects individually.
@@ -57,8 +57,8 @@ To login to both the admin panel and the client side app, use the following cred
 
 ## Demo Version
 
-Unfortunately there are no more free hosting options, so demo version of all Caseritos apps are down and won't be available anymore.
-The only way for now of interacting with the app is following the local setup instructions above.
+Unfortunately there are no more free hosting options, so the demo version of all Caseritos apps are down and won't be available anymore.
+The only way for now of interacting with the app is by following the local setup instructions above.
 
 ## Screenshots
 
